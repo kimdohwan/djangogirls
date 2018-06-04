@@ -33,17 +33,27 @@ def post_list(request):
     # - 글제목..
     # ...
     # 위 텍스트를 넣어서 리턴
-    posts = Post.objects.all()
-    print(posts)
-
-    result = '글 목록<br>'
-    for post in Post.objects.all():
-        result += '{}<br>'.format(post.title)
-
-    # po = ['글 목록', ]
+    # posts = Post.objects.all()
+    # print(posts)
+    #
+    # result = '글 목록<br>'
     # for post in Post.objects.all():
-    #     po.append(f'<br> - {post.title}')
+    #     result += '{}<br>'.format(post.title)
+    #
+    # # po = ['글 목록', ]
+    # # for post in Post.objects.all():
+    # #     po.append(f'<br> - {post.title}')
+    #
+    # # result = '\n'.join([post for post in Post.objects.all()])
+    #
+    # return HttpResponse(result)
 
-    # result = '\n'.join([post for post in Post.objects.all()])
-
-    return HttpResponse(result)
+    posts = Post.objects.all()
+    context = {
+        'posts': posts,
+    }
+    # render는 주어진 1,2번째 인수를 사용해서
+    #     1번째 인수: httpresponse인스턴스
+    #     2번째 인수: 문자열(TEMPLATES['DIRS']를 기준으로 탐색 할 템플릿 파일의 경로)
+    #     3번째 인수: 템플릿을 렌더링할때 사용할 객체 모음
+    return render(request, 'blog/post_list.html', context)

@@ -10,11 +10,14 @@
 <body>
     <h1>Djangogirls blog</h1>
 
+    {% for post in posts %}
     <div>
-        <p>published: ---</p>
-        <h2>My first Blog</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, repudiandae?</p>
+        <p>published: {{ post.published_date }}</p>
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.text}}</p>
     </div>
+    {% endfor %}
+
 
     <div>
         <p>published: ---</p>
